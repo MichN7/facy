@@ -1,0 +1,36 @@
+.login-form {
+    font-family: 'Work Sans', sans-serif;
+}
+
+h1.ui.teal.center.aligned.header {
+    font-size: 3rem;
+    margin-top: 0;
+}
+
+.login-form p {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.375;
+    color: #666;
+}
+
+.login-form svg{
+    color: #DB5A6E;
+}
+
+form.ui.large.form {
+    margin-top: 24px;
+}
+
+.ui.teal.header {
+    color: #4571DA !important;
+}
+
+.ui.teal.button, .ui.teal.buttons .button {
+    background-color: #4571DA;
+ }
+
+
+.ui.teal.button:hover, .ui.teal.buttons .button:hover {
+    background-color: #DB5A6E;
+}
