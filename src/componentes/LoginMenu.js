@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom'
 //React ICON
 import TiSocialFlickrCircular from 'react-icons/lib/ti/social-flickr-circular'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
@@ -42,9 +42,9 @@ class LoginMenu extends Component {
 		         placeholder='Password'
 		         type='password'
 		        />
-
-	          <Button color='teal' fluid size='large'>Ingresar</Button>
-	       
+						<Link to="/charts">
+							<Button color='teal' fluid size='large'>Ingresar</Button>
+						</Link>
 	        </Form>
 	     </Grid.Column>
 	    </Grid>
