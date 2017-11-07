@@ -32,8 +32,9 @@ function datosFlujo(){
   return flujo;
 }
 const styles = {
-  width:'90%',
-  padding:'3%'
+  width:'82%',
+  padding:'3%',
+  marginLeft: '9%'
  }
 class ChartFlujo extends Component{
     render(){

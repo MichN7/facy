@@ -5,13 +5,13 @@ import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recha
 import './ChartEdad.css'
 
 const data = [
-      {name: '0-5', Hombres: 4, Mujeres: 2, amt: 2},
-      {name: '6-10', Hombres: 3, Mujeres: 1, amt: 2},
-      {name: '11-15', Hombres: 5, Mujeres: 9, amt: 2},
-      {name: '16-20', Hombres: 2, Mujeres: 3, amt: 2},
-      {name: '21-25', Hombres: 8, Mujeres: 5, amt: 2},
-      {name: '26-30', Hombres: 2, Mujeres: 3, amt: 2},
-      {name: '31-35', Hombres: 3, Mujeres: 4, amt: 2},
+      {name: '0-5', Hombres: 4, Mujeres: 2},
+      {name: '6-10', Hombres: 3, Mujeres: 1},
+      {name: '11-15', Hombres: 5, Mujeres: 9},
+      {name: '16-20', Hombres: 2, Mujeres: 3},
+      {name: '21-25', Hombres: 8, Mujeres: 5},
+      {name: '26-30', Hombres: 2, Mujeres: 3},
+      {name: '31-35', Hombres: 3, Mujeres: 4},
 ];
 
 class ChartEdad extends Component{
