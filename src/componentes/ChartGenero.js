@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 //react charts
 import {Doughnut} from 'react-chartjs-2';
 
-//react icons
-import iconFlujo from 'react-icons/lib/ti/chart-line-outline';
+
 
 const data = {
     labels:[
