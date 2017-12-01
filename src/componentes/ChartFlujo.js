@@ -3,67 +3,68 @@ import {Line} from 'react-chartjs-2';
 import * as firebase from 'firebase'
 import {ref,firebaseAuth} from './const.js'
 
+
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+
 const styles = {
   width:'82%',
   padding:'3%',
   marginLeft: '9%'
  }
 
+ function adecuarArray(datos,arrayDias){
+   var datosFinales=[];
+   var aux;
+   for(var i=0;i<datos.length;i++){
+     if(i==0){
+       aux=arrayDias[i];
+       datosFinales.push(datos[i]);
+     }
+     else{
+       var resta=arrayDias[i]-aux;
+       if(resta!=1){
+         var valActual=datos[i];
+         for(var j=1;j<resta;j++){
+           datosFinales.push(0);
+         }
+       }
+       datosFinales.push(datos[i]);
+       aux=arrayDias[i];
+     }
+
+   }
+
+   for(var i=1;i<arrayDias[0];i++){ //llenamos array con 0 al inicio para equilibrar dias no metricados
+       datosFinales.unshift(0);
+   }
+   return datosFinales;
+ }
+
 class ChartFlujo extends Component{
     componentWillMount(){
 
       this.state ={
-        Ene:0,
-        Feb:0,
-        Mar:0,
-        Abr:0,
-        May:0,
-        Jun:0,
-        Jul:0,
-        Ago:0,
-        Sep:0,
-        Oct:0,
-        Nov:0,
-        Dic:0,
+        mesActivo:0,
+        arrayViews:[],
+        arrayDays:[],
       }
-
-      let self = this;
-      var viewRefNov = firebase.database().ref('cliente/2017/11');
-      viewRefNov.on('value', function(snapshot) {
-        snapshot.forEach(snapChild =>{
-          snapChild.forEach(snapBaby=>{
-            if(snapBaby.val().viewCount != undefined){
-              self.setState({
-                Nov:snapBaby.val().viewCount,
-              })
-            }
-          })
-        })
-      });
-
-
-
     }
 
-    datosFlujo(){
-      
-      let Ene = this.state.Ene;
-      let Feb = this.state.Feb;
-      let Mar = this.state.Mar;
-      let Abr = this.state.Abr;
-      let May = this.state.May;
-      let Jun = this.state.Jun;
-      let Jul = this.state.Jul;
-      let Ago = this.state.Ago;
-      let Sep = this.state.Sep;
-      let Oct = this.state.Oct;
-      let Nov = this.state.Nov;
-      let Dic = this.state.Dic;
 
-      var datos=[Ene,Feb,Mar,Abr,May,Jun,Jul,Ago,Sep,Oct,Nov,Dic];
+
+    datosFlujo(array,arrayDias){
+        var datos=array;
+        var arrayDias=arrayDias;
+        var datosFinales=[];
+        if(datos!=null){
+        datosFinales=adecuarArray(datos,arrayDias);
+      }
 
       const flujo = {
-        labels: ['Ene', 'Feb', 'Mar', 'Abr', 'Mayo', 'Jun', 'Jul','Ago','Sep','Oct','Nov','Dic'],
+        labels: ['1', '2', '3', '4', '5', '6', '7','8','9','10',
+                 '11','12','13','14','15','16','17','18','19','20',
+                 '21','22','23','24','25','26','27','28','29','30'],
         datasets: [
           {
             label: 'Usuarios que ingresaron',
@@ -84,17 +85,68 @@ class ChartFlujo extends Component{
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: datos
+            data: datosFinales
           }
         ]
       };
       return flujo;
     }
 
+    handleChange = (event, index, value) =>{
+      let self = this;
+      let totalCounts = 0;
+      let arrayViews = [];
+      let arrayDays = [];
+      var promise=new Promise(
+        function(resolve,reject){
+          resolve(
+            self.setState({
+               mesActivo:value,
+               value:value,
+             })
+          );
+        }
+      )
+      promise.then(
+        function(){
+          let mesActivo = self.state.mesActivo;
+          var viewRefMes = firebase.database().ref('cliente/2017/'+mesActivo+'/');
+          viewRefMes.on('value',function(snapshot){
+            snapshot.forEach(snapChild =>{
+              self.setState({
+                arrayViews: self.state.arrayViews.concat(snapChild.val().views.viewCount),
+                arrayDays: self.state.arrayDays.concat(snapChild.key),
+              })
+            })
+          });
+
+        }
+      )
+
+    }
+
     render(){
         return(
             <div style={styles}>
-            <Line data={this.datosFlujo()}  />
+            <Line data={()=>this.datosFlujo(this.state.arrayViews,this.state.arrayDays)}  />
+            <SelectField
+              floatingLabelText="Seleccione el mes"
+              value={this.state.value}
+              onChange={this.handleChange}
+            >
+              <MenuItem value={1} primaryText="Enero" />
+              <MenuItem value={2} primaryText="Febrero" />
+              <MenuItem value={3} primaryText="Marzo" />
+              <MenuItem value={4} primaryText="Abril" />
+              <MenuItem value={5} primaryText="Mayo" />
+              <MenuItem value={6} primaryText="Junio" />
+              <MenuItem value={7} primaryText="Julio" />
+              <MenuItem value={8} primaryText="Agosto" />
+              <MenuItem value={9} primaryText="Septiembre" />
+              <MenuItem value={10} primaryText="Octubre" />
+              <MenuItem value={11} primaryText="Noviembre" />
+              <MenuItem value={12} primaryText="Diciembre" />
+            </SelectField>
             </div>
         )
     }

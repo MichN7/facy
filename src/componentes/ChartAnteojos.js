@@ -5,13 +5,13 @@ import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recha
 import './ChartAnteojos.css'
 
 const data = [
-      {name: '0-5', Hombres: 8, Mujeres: 2},
-      {name: '6-10', Hombres: 6, Mujeres: 5},
-      {name: '11-15', Hombres: 5, Mujeres: 9},
-      {name: '16-20', Hombres: 2, Mujeres: 5},
-      {name: '21-25', Hombres: 8, Mujeres: 5},
-      {name: '26-30', Hombres: 7, Mujeres: 3},
-      {name: '31-35', Hombres: 3, Mujeres: 6},
+      {name: '10-15', Hombres: 8, Mujeres: 2},
+      {name: '16-20', Hombres: 6, Mujeres: 5},
+      {name: '21-25', Hombres: 5, Mujeres: 9},
+      {name: '26-30', Hombres: 2, Mujeres: 5},
+      {name: '31-35', Hombres: 8, Mujeres: 5},
+      {name: '36-40', Hombres: 7, Mujeres: 3},
+      {name: '41-45', Hombres: 3, Mujeres: 6},
 ];
 
 class ChartAnteojos extends Component{
