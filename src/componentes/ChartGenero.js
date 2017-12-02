@@ -25,8 +25,8 @@ class ChartGenero extends Component{
       var mesActual = date.getMonth();
 
       this.state = {
-        mesActivo:mesActual,
-        value:mesActual,
+        mesActivo:mesActual+1,
+        value:mesActual+1,
         female:0,
         male:0
       }
@@ -63,10 +63,10 @@ class ChartGenero extends Component{
             generoActivo = snapGrandChild.key;
             snapGrandChild.forEach(snapGrandGrandChild=>{ //key = rango de edades
               snapGrandGrandChild.forEach(snapGrandGrandGrandChild =>{ //key = emociones...
-                if(snapGrandGrandGrandChild.key == 'emociones'){
+                if(snapGrandGrandGrandChild.key == 'Emociones'){
                   snapGrandGrandGrandChild.forEach(snapGrandGrandGrandGrandChild =>{ //key = feliz, sunGlasses
-                    totalCounts += snapGrandGrandGrandGrandChild.val().count;
-                    console.log("Numero:"+snapGrandGrandGrandGrandChild.val().count);
+                    totalCounts += snapGrandGrandGrandGrandChild.val().total;
+                    console.log("Numero:"+snapGrandGrandGrandGrandChild.val().total);
                   })
                 }
               })

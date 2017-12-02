@@ -19,7 +19,7 @@ class ChartEdad extends Component{
     componentWillMount(){
 
       var date = new Date();
-      var mesActual = date.getMonth();
+      var mesActual = date.getMonth() + 1;
 
       this.state={
         mesActivo:mesActual,
@@ -33,7 +33,6 @@ class ChartEdad extends Component{
         rangoEdad4F:0,
         rangoEdad5F:0,
         rangoEdad6F:0,
-        rangoEdad7F:0,
 
         rangoEdad1M:0,
         rangoEdad2M:0,
@@ -41,7 +40,6 @@ class ChartEdad extends Component{
         rangoEdad4M:0,
         rangoEdad5M:0,
         rangoEdad6M:0,
-        rangoEdad7M:0,
 
       }
       this.getDataFromDataBase();
@@ -54,39 +52,34 @@ class ChartEdad extends Component{
       console.log("En: " + edadActiva);
       if(generoActivo === "female"){
         switch (edadActiva) {
-          case "Edad 10-15":
+          case "Edad 0-15":
             this.setState({
               rangoEdad1F: this.state.rangoEdad1F + totalCounts,
             })
             break;
-          case "Edad 16-20":
+          case "Edad 16-22":
             this.setState({
               rangoEdad2F: this.state.rangoEdad2F + totalCounts,
             })
           break;
-          case "Edad 21-25":
+          case "Edad 23-30":
             this.setState({
               rangoEdad3F: this.state.rangoEdad3F + totalCounts,
             })
           break;
-          case "Edad 26-30":
+          case "Edad 31-40":
             this.setState({
               rangoEdad4F: this.state.rangoEdad4F + totalCounts,
             })
             break;
-          case "Edad 31-35":
+          case "Edad 41-50":
             this.setState({
               rangoEdad5F: this.state.rangoEdad5F + totalCounts,
             })
           break;
-          case "Edad 36-40":
+          case "Edad 51 o mas":
             this.setState({
               rangoEdad6F: this.state.rangoEdad6F + totalCounts,
-            })
-          break;
-          case "Edad 41-45":
-            this.setState({
-              rangoEdad7F: this.state.rangoEdad7F + totalCounts,
             })
           break;
           default:
@@ -100,34 +93,29 @@ class ChartEdad extends Component{
               rangoEdad1M: this.state.rangoEdad1M + totalCounts,
             })
             break;
-          case "Edad 16-20":
+          case "Edad 16-22":
             this.setState({
               rangoEdad2M: this.state.rangoEdad2M + totalCounts,
             })
           break;
-          case "Edad 21-25":
+          case "Edad 23-30":
             this.setState({
               rangoEdad3M: this.state.rangoEdad3M + totalCounts,
             })
           break;
-          case "Edad 26-30":
+          case "Edad 31-40":
             this.setState({
               rangoEdad4M: this.state.rangoEdad4M + totalCounts,
             })
             break;
-          case "Edad 31-35":
+          case "Edad 41-50":
             this.setState({
               rangoEdad5M: this.state.rangoEdad5M + totalCounts,
             })
           break;
-          case "Edad 36-40":
+          case "Edad 51 o mas":
             this.setState({
               rangoEdad6M: this.state.rangoEdad6M + totalCounts,
-            })
-          break;
-          case "Edad 41-45":
-            this.setState({
-              rangoEdad7M: this.state.rangoEdad7M + totalCounts,
             })
           break;
           default:
@@ -149,10 +137,10 @@ class ChartEdad extends Component{
             snapGrandChild.forEach(snapGrandGrandChild=>{ //key = rango de edades
               let edadActiva = snapGrandGrandChild.key;
               snapGrandGrandChild.forEach(snapGrandGrandGrandChild =>{ //key = emociones...
-                if(snapGrandGrandGrandChild.key == 'emociones'){
+                if(snapGrandGrandGrandChild.key == 'Emociones'){
                   snapGrandGrandGrandChild.forEach(snapGrandGrandGrandGrandChild =>{ //key = feliz, sunGlasses
-                    totalCounts += snapGrandGrandGrandGrandChild.val().count;
-                    console.log("Numero:"+snapGrandGrandGrandGrandChild.val().count);
+                    totalCounts += snapGrandGrandGrandGrandChild.val().total;
+                    console.log("Numero:"+snapGrandGrandGrandGrandChild.val().total);
                   })
                 }
               })
@@ -192,13 +180,12 @@ class ChartEdad extends Component{
     render(){
 
       let data = [
-        {name: '10-15', Hombres: this.state.rangoEdad1M, Mujeres: this.state.rangoEdad1F},
-        {name: '16-20', Hombres: this.state.rangoEdad2M, Mujeres: this.state.rangoEdad2F},
-        {name: '21-25', Hombres: this.state.rangoEdad3M, Mujeres: this.state.rangoEdad3F},
-        {name: '26-30', Hombres: this.state.rangoEdad4M, Mujeres: this.state.rangoEdad4F},
-        {name: '31-35', Hombres: this.state.rangoEdad5M, Mujeres: this.state.rangoEdad5F},
-        {name: '36-40', Hombres: this.state.rangoEdad6M, Mujeres: this.state.rangoEdad6F},
-        {name: '41-45', Hombres: this.state.rangoEdad7M, Mujeres: this.state.rangoEdad7F},
+        {name: '0-15', Hombres: this.state.rangoEdad1M, Mujeres: this.state.rangoEdad1F},
+        {name: '16-22', Hombres: this.state.rangoEdad2M, Mujeres: this.state.rangoEdad2F},
+        {name: '23-30', Hombres: this.state.rangoEdad3M, Mujeres: this.state.rangoEdad3F},
+        {name: '31-40', Hombres: this.state.rangoEdad4M, Mujeres: this.state.rangoEdad4F},
+        {name: '41-50', Hombres: this.state.rangoEdad5M, Mujeres: this.state.rangoEdad5F},
+        {name: '51 o mas', Hombres: this.state.rangoEdad6M, Mujeres: this.state.rangoEdad6F},
       ];
 
         return(

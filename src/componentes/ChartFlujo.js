@@ -44,11 +44,18 @@ const styles = {
 class ChartFlujo extends Component{
     componentWillMount(){
 
+      var date = new Date();
+      var mesActual = date.getMonth()+1;
+
       this.state ={
-        mesActivo:0,
+        mesActivo:mesActual,
+        value: mesActual,
         arrayViews:[],
         arrayDays:[],
       }
+
+      this.getDataFromDataBase();
+
     }
 
 
@@ -92,6 +99,23 @@ class ChartFlujo extends Component{
       return flujo;
     }
 
+    getDataFromDataBase = () =>{
+      let self = this;
+      let totalCounts = 0;
+      let arrayViews = [];
+      let arrayDays = [];
+      let mesActivo = self.state.mesActivo;
+      var viewRefMes = firebase.database().ref('cliente/2017/'+mesActivo+'/');
+      viewRefMes.on('value',function(snapshot){
+        snapshot.forEach(snapChild =>{
+          self.setState({
+            arrayViews: self.state.arrayViews.concat(snapChild.val().views.viewCount),
+            arrayDays: self.state.arrayDays.concat(snapChild.key),
+          })
+        })
+      });
+    }
+
     handleChange = (event, index, value) =>{
       let self = this;
       let totalCounts = 0;
@@ -109,17 +133,7 @@ class ChartFlujo extends Component{
       )
       promise.then(
         function(){
-          let mesActivo = self.state.mesActivo;
-          var viewRefMes = firebase.database().ref('cliente/2017/'+mesActivo+'/');
-          viewRefMes.on('value',function(snapshot){
-            snapshot.forEach(snapChild =>{
-              self.setState({
-                arrayViews: self.state.arrayViews.concat(snapChild.val().views.viewCount),
-                arrayDays: self.state.arrayDays.concat(snapChild.key),
-              })
-            })
-          });
-
+          self.getDataFromDataBase();
         }
       )
 
