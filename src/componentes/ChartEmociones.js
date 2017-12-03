@@ -10,16 +10,6 @@ import MenuItem from 'material-ui/MenuItem';
 
 import './ChartEdad.css'
 
-let data = [
-      {name: 'Enojo', Hombres: 6, Mujeres: 3},
-      {name: 'Desprecio', Hombres: 4, Mujeres: 2},
-      {name: 'Disgusto', Hombres: 8, Mujeres: 9},
-      {name: 'Miedo', Hombres: 4, Mujeres: 5},
-      {name: 'Felicidad', Hombres: 8, Mujeres: 2},
-      {name: 'Tristeza', Hombres: 2, Mujeres: 7},
-      {name: 'Sorpresa', Hombres: 6, Mujeres: 8},
-];
-
 class ChartEmociones extends Component{
 
     componentWillMount(){
