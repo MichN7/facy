@@ -1,0 +1,51 @@
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    margin-top: 5%;
+}
+
+.title {
+    color: grey;
+    font-size: 18px;
+    margin:0;
+    color: lightcoral !important;
+}
+
+.card img {
+    border-style: none;
+    width: 70%;
+}
+
+.card h1 {
+    margin-bottom: -50px;
+    padding-top: 5%;
+    color:rgb(69, 113, 218);
+}
+
+.first-part {
+    display: flex;
+    margin-bottom: 25%;
+}
+
+.second-part{
+  display: flex;
+  padding-bottom: 20%;
+}
+
+.data-part {
+    margin-left: 20%;
+}
+
+.emocion {
+    margin-right: 20%;
+}
+
+.lentes {
+  margin-left: 12%;
+}
+
+.card p {
+    color: rgb(69, 113, 218);
+}

@@ -157,7 +157,6 @@ class ChartEmociones extends Component{
                 if(snapGrandGrandGrandChild.key == 'Emociones'){
                   snapGrandGrandGrandChild.forEach(snapGrandGrandGrandGrandChild =>{ //key = feliz, sunGlasses
                     let emocionActiva = snapGrandGrandGrandGrandChild.key;
-                    alert(emocionActiva);
                     let count = snapGrandGrandGrandGrandChild.val().total;
                     self.handleDates(emocionActiva,generoActivo,count);
                   })

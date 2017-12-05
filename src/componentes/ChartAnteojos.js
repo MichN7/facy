@@ -93,7 +93,6 @@ class ChartAnteojos extends Component{
               if(snapGrandGrandGrandChild.key == 'lentes'){
                 snapGrandGrandGrandChild.forEach(snapGrandGrandGrandGrandChild =>{ //key = feliz, sunGlasses
                   let lentesActivos = snapGrandGrandGrandGrandChild.key;
-                  alert(lentesActivos);
                   let count = snapGrandGrandGrandGrandChild.val().total;
                   self.handleDates(lentesActivos,generoActivo,count);
                 })

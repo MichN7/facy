@@ -17,6 +17,7 @@ import ChartEdad from './ChartEdad.js'
 import ChartEmociones from './ChartEmociones.js'
 import ChartGenero from './ChartGenero.js'
 import ChartFlujo from './ChartFlujo.js'
+import DatosUltimaPersona from './DatosUltimaPersona.js'
 
 const styles = {
     tab: {
@@ -62,6 +63,13 @@ class Charts extends Component{
               icon={<GoEye/>}
             >
                 <ChartAnteojos/>
+            </Tab>
+            <Tab
+              style={styles.tab}
+              label="UP"
+              icon={<GoEye/>}
+            >
+                <DatosUltimaPersona/>
             </Tab>
           </Tabs>
         )
