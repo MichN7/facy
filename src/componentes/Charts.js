@@ -7,6 +7,7 @@ import MdMood from 'react-icons/lib/md/mood';
 import MdWc from 'react-icons/lib/md/wc';
 import FaChild from 'react-icons/lib/fa/child';
 import GoEye from 'react-icons/lib/go/eye';
+import MdChildCare from 'react-icons/lib/md/child-care'
 
 //Material ui componente
 import Slider from 'material-ui/Slider';
@@ -67,7 +68,7 @@ class Charts extends Component{
             <Tab
               style={styles.tab}
               label="UP"
-              icon={<GoEye/>}
+              icon={<MdChildCare/>}
             >
                 <DatosUltimaPersona/>
             </Tab>
